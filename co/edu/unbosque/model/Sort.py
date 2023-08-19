@@ -85,7 +85,6 @@ class Sort:
 
             # increase the starting point for the next right-to-left pass
             start += 1
-        print(arr)
         return time.time() - before_time
 
     def doBinaryTreeSort(self, arr):

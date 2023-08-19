@@ -12,11 +12,20 @@ class BinaryTree:
                 root.left = self.insert(root.left, key)
         return root
 
-    def in_order_traversal(self, root, result):
-        if root:
-            self.in_order_traversal(root.left, result)
-            result.append(root.val)
-            self.in_order_traversal(root.right, result)
+    def in_order_traversal(self, root):
+        result = []
+        stack = []
+        current = root
+
+        while current or stack:
+            while current:
+                stack.append(current)
+                current = current.left
+            current = stack.pop()
+            result.append(current.val)
+            current = current.right
+
+        return result
 
     def binarySort(self, arr):
         if not arr:
@@ -26,6 +35,5 @@ class BinaryTree:
         for i in range(1, len(arr)):
             self.insert(root, arr[i])
 
-        result = []
-        self.in_order_traversal(root, result)
+        result = self.in_order_traversal(root)
         return result

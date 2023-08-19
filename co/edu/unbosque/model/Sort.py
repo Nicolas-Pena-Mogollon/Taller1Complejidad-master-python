@@ -38,7 +38,7 @@ class Sort:
         pivot = arr[int(len(arr) / 2)]
 
         for x in arr:
-            if x < pivot:
+            if x > pivot:
                 left.append(x)
             elif x == pivot:
                 equal.append(x)

@@ -3,37 +3,83 @@ from co.edu.unbosque.model.TreeNode import TreeNode
 
 class BinaryTree:
     def insert(self, root, key):
-        if root is None:
+        if not root:
             return TreeNode(key)
+
+        if key < root.val:
+            root.left = self.insert(root.left, key)
         else:
-            if root.val < key:
-                root.right = self.insert(root.right, key)
+            root.right = self.insert(root.right, key)
+
+        root.height = 1 + max(self.get_height(root.left), self.get_height(root.right))
+        balance = self.get_balance(root)
+
+        if balance > 1:
+            if key < root.left.val:
+                return self.rotate_right(root)
             else:
-                root.left = self.insert(root.left, key)
+                root.left = self.rotate_left(root.left)
+                return self.rotate_right(root)
+
+        if balance < -1:
+            if key > root.right.val:
+                return self.rotate_left(root)
+            else:
+                root.right = self.rotate_right(root.right)
+                return self.rotate_left(root)
+
         return root
+
+    def get_height(self, root):
+        if not root:
+            return 0
+        return root.height
+
+    def get_balance(self, root):
+        if not root:
+            return 0
+        return self.get_height(root.left) - self.get_height(root.right)
+
+    def rotate_left(self, z):
+        if not z:
+            return z  # Manejar el caso en que z es None
+
+        y = z.right
+        if not y:
+            return z  # Manejar el caso en que y es None
+
+        T2 = y.left
+
+        y.left = z
+        z.right = T2
+
+        z.height = 1 + max(self.get_height(z.left), self.get_height(z.right))
+        y.height = 1 + max(self.get_height(y.left), self.get_height(y.right))
+
+        return y
+
+    def rotate_right(self, y):
+        if not y:
+            return y  # Manejar el caso en que y es None
+
+        x = y.left
+        if not x:
+            return y  # Manejar el caso en que x es None
+
+        T2 = x.right
+
+        x.right = y
+        y.left = T2
+
+        y.height = 1 + max(self.get_height(y.left), self.get_height(y.right))
+        x.height = 1 + max(self.get_height(x.left), self.get_height(x.right))
+
+        return x
 
     def in_order_traversal(self, root):
         result = []
-        stack = []
-        current = root
-
-        while current or stack:
-            while current:
-                stack.append(current)
-                current = current.left
-            current = stack.pop()
-            result.append(current.val)
-            current = current.right
-
-        return result
-
-    def binarySort(self, arr):
-        if not arr:
-            return []
-
-        root = TreeNode(arr[0])
-        for i in range(1, len(arr)):
-            self.insert(root, arr[i])
-
-        result = self.in_order_traversal(root)
+        if root:
+            result += self.in_order_traversal(root.left)
+            result.append(root.val)
+            result += self.in_order_traversal(root.right)
         return result

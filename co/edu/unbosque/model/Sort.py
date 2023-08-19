@@ -17,7 +17,7 @@ class Sort:
 
     def quickSortTimer(self, arr):
         before_time = time.time()
-        print(self.doQuickSort(arr))
+        self.doQuickSort(arr)
         return time.time() - before_time
 
     def doQuickSort(self, arr):
@@ -88,6 +88,11 @@ class Sort:
         return time.time() - before_time
 
     def doBinaryTreeSort(self, arr):
+
+        root = None
         before_time = time.time()
-        print(self.binaryTree.binarySort(arr))
+        for item in arr:
+            root = self.binaryTree.insert(root, item)
+
+        self.binaryTree.in_order_traversal(root)
         return time.time() - before_time

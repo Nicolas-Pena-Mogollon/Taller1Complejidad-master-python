@@ -40,7 +40,6 @@ class Controller:
         :return: array ordenado de acuerdo al algoritmo de ordenamiento
         """
         sort_option = ""
-        print(numbers_array)
         while sort_option != "0":
             sort_option = self.view.askSortOption()
             #  Opciones de ordenamiento

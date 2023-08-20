@@ -27,6 +27,7 @@ class Controller:
         while entry_option != "0":
             array = self.manageOrderOption()
             if len(array) == 0:
+                self.view.printData("Gracias!")
                 break
             time_taken = self.manageSortOption(array)
             if time_taken == -1:
@@ -94,17 +95,26 @@ class Controller:
         order_option = ""
         while order_option != "0":
             order_option = self.view.askNumbersOrder()
+
             if order_option == "0":
                 return []
-            else:
+            elif order_option == "1":
                 quantity = self.manageRandomNumOption()
                 if quantity == 0:
                     return []
-                elif order_option == "1":
-                    return self.model.arrayGenerator.createAscendingList(quantity)
-                elif order_option == "2":
-                    return self.model.arrayGenerator.createDescendingList(quantity)
-                elif order_option == "3":
-                    return self.model.arrayGenerator.createRandomList(quantity)
-                else:
-                    self.view.printData("Opción incorrecta")
+                print("Espere mientras se generan los números")
+                return self.model.createAscendingList(quantity)
+            elif order_option == "2":
+                quantity = self.manageRandomNumOption()
+                if quantity == 0:
+                    return []
+                print("Espere mientras se generan los números")
+                return self.model.createDescendingList(quantity)
+            elif order_option == "3":
+                quantity = self.manageRandomNumOption()
+                if quantity == 0:
+                    return []
+                print("Espere mientras se generan los números")
+                return self.model.createRandomList(quantity)
+            else:
+                self.view.printData("Opción incorrecta")

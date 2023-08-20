@@ -103,18 +103,18 @@ class Controller:
                 if quantity == 0:
                     return []
                 print("Espere mientras se generan los números")
-                return self.model.createAscendingList(quantity)
+                return self.model.arrayGenerator.createAscendingList(quantity)
             elif order_option == "2":
                 quantity = self.manageRandomNumOption()
                 if quantity == 0:
                     return []
                 print("Espere mientras se generan los números")
-                return self.model.createDescendingList(quantity)
+                return self.model.arrayGenerator.createDescendingList(quantity)
             elif order_option == "3":
                 quantity = self.manageRandomNumOption()
                 if quantity == 0:
                     return []
                 print("Espere mientras se generan los números")
-                return self.model.createRandomList(quantity)
+                return self.model.arrayGenerator.createRandomList(quantity)
             else:
                 self.view.printData("Opción incorrecta")

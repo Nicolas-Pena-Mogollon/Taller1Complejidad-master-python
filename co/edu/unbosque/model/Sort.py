@@ -1,5 +1,5 @@
 """
-Created on Sept 6,2021
+Created on August 19,2023
 
 @author: Nicolás Peña Mogollón - María Camila Lozano Gutiérrez
 """
@@ -16,6 +16,11 @@ class Sort:
         pass
 
     def quickSortTimer(self, arr):
+        """
+        Mide el tiempo de ejecución del algoritmo
+        :param arr: lista de númerps
+        :return: tiempo de ejecución
+        """
         before_time = time.time()
         self.doQuickSort(arr)
         return time.time() - before_time
@@ -52,6 +57,15 @@ class Sort:
         return final
 
     def doCocktailSort(self, arr):
+        """
+        Realiza el ordenamiento de tipo Cocktail Sort en una lista de enteros.Itera
+        desde el inicio hasta el final comparando elementos adyacentes. Intercambia
+        los elementos si están desordenados. Itera desde el final hasta el inicio
+        comparando los elementos y vuelve a intercambiar los valores si estan
+        desordenados
+        :param arr: Lista de números
+        :return: tiempo de ejecución del algoritmo
+        """
         before_time = time.time()
         n = len(arr)
         swapped = True
@@ -88,7 +102,13 @@ class Sort:
         return time.time() - before_time
 
     def doBinaryTreeSort(self, arr):
-
+        """
+        mide el tiempo de ejecución de arbol binario
+        @param arr lista de números
+        return
+        :param arr: lista de números
+        :return: tiempo de ejecución
+        """
         root = None
         before_time = time.time()
         for item in arr:

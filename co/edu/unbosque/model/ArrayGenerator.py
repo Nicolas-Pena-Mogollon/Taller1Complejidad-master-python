@@ -1,3 +1,8 @@
+"""
+Created on August 19,2023
+
+@author: Nicolás Peña Mogollón - María Camila Lozano Gutiérrez
+"""
 import random
 
 
